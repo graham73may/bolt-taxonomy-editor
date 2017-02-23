@@ -2,6 +2,16 @@
     "name": "soapbox/taxonomyeditor",
     "description": "An extension to add a GUI to edit taxonomies.",
     "type": "bolt-extension",
+    "keywords": [
+        "taxonomy",
+        "gui",
+        "taxonomy editor",
+        "taxonomy visual editor",
+        "editor",
+        "category",
+        "categories",
+        "tags"
+    ],
     "require": {
         "bolt/bolt": "^3.0"
     },
