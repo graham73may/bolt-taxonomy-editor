@@ -1,0 +1,6 @@
+.DS_*
+.idea/*
+config.yml
+composer.lock
+vendor/
+tests/tmp/

@@ -1,0 +1,34 @@
+{% macro taxonomyitem(term_slug, term_name, id, taxonomy_config, taxonomy_slug) %}
+    <li class="mjs-nestedSortable-expanded" data-slug="{{ term_slug }}" data-name="{{ term_name }}" id="taxonomyterm-{{ id }}">
+        <div>
+            <!-- The taxonomy term header -->
+            <div class="flex-row">
+                <span title="{{ __('taxonomyeditor.action.showhideeditor', {'DEFAULT': 'Click to show/hide term editor'}) }}" class="no-grow expandEditor">
+                    <i class="fa fa-chevron-down" aria-hidden="true"></i>
+                </span>
+                <span class="itemTitle">{{ term_name }}</span>
+                <span title="{{ __('taxonomyeditor.action.delete', {'DEFAULT': 'Click to delete term'}) }}" class="no-grow deleteTaxonomy">
+                    <i class="fa fa-trash-o" aria-hidden="true"></i>
+                </span>
+            </div>
+
+            <!-- The taxonomy term content -->
+            <div class="form-horizontal editor" style="display:none;">
+                <div class="fields">
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label">{{ __('taxonomyeditor.fields.name', {'DEFAULT': 'Name'}) }}</label>
+                        <div class="col-sm-9">
+                            <input type="text" class="form-control" placeholder="{{ __('taxonomyeditor.fields.name', {'DEFAULT': 'Name'}) }}" name="name" value="{{ term_name }}">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label">{{ __('taxonomyeditor.fields.slug', {'DEFAULT': 'Slug'}) }}</label>
+                        <div class="col-sm-9">
+                            <input type="text" class="form-control" placeholder="{{ __('taxonomyeditor.fields.slug', {'DEFAULT': 'Slug'}) }}" name="slug" value="{{ term_slug }}">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </li>
+{% endmacro %}

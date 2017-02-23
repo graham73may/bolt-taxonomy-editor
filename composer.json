@@ -1,0 +1,36 @@
+{
+    "name": "soapbox/taxonomyeditor",
+    "description": "An extension to add a GUI to edit taxonomies.",
+    "type": "bolt-extension",
+    "require": {
+        "bolt/bolt": "^3.0"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^4.7"
+    },
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Graham May",
+            "email": "graham.may@soapbox.co.uk"
+        }
+    ],
+    "minimum-stability": "dev",
+    "prefer-stable": true,
+    "autoload": {
+        "psr-4": {
+            "Bolt\\Extension\\Soapbox\\TaxonomyEditor\\": "src",
+            "Bolt\\Extension\\Soapbox\\TaxonomyEditor\\Exceptions\\": "exceptions"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Bolt\\Extension\\Soapbox\\TaxonomyEditor\\Tests\\": "tests",
+            "Bolt\\Tests\\": "vendor/bolt/bolt/tests/phpunit/unit/"
+        }
+    },
+    "extra": {
+        "bolt-assets": "web",
+        "bolt-class": "Bolt\\Extension\\Soapbox\\TaxonomyEditor\\TaxonomyEditorExtension"
+    }
+}

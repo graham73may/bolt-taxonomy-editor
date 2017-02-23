@@ -1,0 +1,111 @@
+{% extends "_base/_page-nav.twig" %}
+{% import "@bolt/taxonomyitem.twig" as item %}
+
+{% block page_title %}
+    <form type="post" class="saveform js-saveform" method="post">
+        <input type="hidden" name="taxonomies" value="">
+        <div class="form-group">
+            <button type="submit" class="btn btn-success" data-content="{{ __('taxonomyeditor.actions.save', {'DEFAULT':'Save Taxonomies'}) }} ">
+                &nbsp;<i class="fa fa-floppy-o" aria-hidden="true"></i>
+            </button>
+        </div>
+    </form>
+    {{ __('taxonomyeditor.title', {'DEFAULT': 'Taxonomy editor'}) }}
+{% endblock %}
+
+{% block page_nav 'Settings/Extensions' %}
+
+
+{% block page_main %}
+    <div class="row">
+        <div class="col-md-8 taxonomies js-taxonomies">
+            <ul class="nav nav-tabs" role="tablist">
+                {% for taxonomy in taxonomies %}
+                    <li role="presentation" class="{{ loop.first ? 'active' }}">
+                        <a href="#{{ taxonomy.slug }}" aria-controls="{{ taxonomy.slug }}" role="tab" data-toggle="tab">{{ taxonomy.name }}</a>
+                    </li>
+                {% endfor %}
+            </ul>
+
+            <div class="tab-content">
+                {% for taxonomy in taxonomies %}
+                    <div role="tabpanel" class="tab-pane {{ loop.first ? 'active' }}" id="{{ taxonomy.slug }}">
+                        <ol class="sortable">
+                            {% for term_slug, term_name in taxonomy.options %}
+                                {{ item.taxonomyitem(term_slug, term_name, loop.index, taxonomy_config, taxonomy.slug) }}
+                            {% endfor %}
+                        </ol>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+
+        <aside class="col-md-4 sidebar">
+            <ul class="nav nav-tabs" role="tablist">
+                <li role="presentation" class="active">
+                    <a href="#add-menu-item" aria-controls="add-menu-item" role="tab" data-toggle="tab">{{ __('taxonomyeditor.actions.add', {'DEFAULT': 'Add taxonomy item'}) }}</a>
+                </li>
+                {% if taxonomy_config.backups.enable %}
+                    <li role="presentation" class="">
+                        <a href="#restore-backups" aria-controls="restore-backups" role="tab" data-toggle="tab">{{ __('taxonomyeditor.actions.restorebackups', {'DEFAULT': 'Restore backups'}) }}</a>
+                    </li>
+                {% endif %}
+            </ul>
+            <div class="tab-content">
+                <div role="tabpanel" class="tab-pane active" id="add-menu-item">
+                    <form class="form-horizontal additem js-add-new-form">
+                        <div class="form-group">
+                            <label for="exampleInputPassword1" class="col-sm-4 control-label">{{ __('taxonomyeditor.fields.name', {'DEFAULT': 'Name'}) }}*</label>
+                            <div class="col-sm-8">
+                                <input type="text" class="form-control js-add-new-name" placeholder="{{ __('taxonomyeditor.fields.name', {'DEFAULT': 'Name'}) }}" name="name" required>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleInputEmail1" class="col-sm-4 control-label">{{ __('taxonomyeditor.fields.slug', {'DEFAULT': 'Slug'}) }}*</label>
+                            <div class="col-sm-8">
+                                <input type="text" class="form-control js-add-new-slug" placeholder="{{ __('taxonomyeditor.fields.slug', {'DEFAULT': 'Slug'}) }}" name="slug" required>
+                            </div>
+                        </div>
+
+                        <button class="btn btn-success js-add-new-term">
+                            {{ __('taxonomyeditor.backups.addnew', {'DEFAULT': 'Add taxonomy term'}) }}
+                        </button>
+                    </form>
+                </div>
+
+                {% if taxonomy_config.backups.enable %}
+                    <div role="tabpanel" class="tab-pane" id="restore-backups">
+                        {% if backups %}
+                            <table class="table">
+                                <tr>
+                                    <th>{{ __('taxonomyeditor.backups.from', {'DEFAULT': 'From'}) }}
+                                    <th>{{ __('taxonomyeditor.backups.date', {'DEFAULT': 'Date'}) }}
+                                    <th>
+                                        {% for backup in backups %}
+                                <tr>
+                                    <td>{{ backup.carbon.diffForHumans() }}
+                                    <td>{{ backup.carbon.toDateTimeString() }}
+                                    <td>
+                                        <form method="post">
+                                            <input type="hidden" name="backup" value="{{ backup.filename }}">
+                                            <button type="submit" class="btn btn-warning btn-xs">{{ __('taxonomyeditor.backups.restore', {'DEFAULT': 'Restore'}) }}</button>
+                                        </form>
+                                        {% endfor %}
+                            </table>
+                        {% else %}
+                            <table class="table">
+                                <tr>
+                                    <td>
+                                        <p>{{ __('taxonomyeditor.backups.nobackups', {'DEFAULT': 'No backups yet, backups are created automatically when you save the taxonomies.'}) }}</p>
+                                    </td>
+                                </tr>
+                            </table>
+                        {% endif %}
+                    </div>
+                {% endif %}
+            </div>
+        </aside>
+    </div>
+
+    <script>var taxonomyEditorTranslations = {{ JsTranslations|raw }}</script>
+{% endblock %}

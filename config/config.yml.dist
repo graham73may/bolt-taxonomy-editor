@@ -1,0 +1,9 @@
+# Backup settings
+backups:
+    enable: true # Whether to enable backups or not
+    folder: 'config://extensions/taxonomy_backups' # This has to be a filesystem path
+    keep: 10 # How many backups to keep
+
+# Permission for the taxonomy editor
+# Use an existing permission from the /bolt/roles page, or create your own
+permission: files:config
