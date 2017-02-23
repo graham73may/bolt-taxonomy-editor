@@ -1,6 +1,8 @@
 # Taxonomy editor
 Le missing visual taxonomy editor for bolt CMS.
 
+This plugin will read your `taxonomy.yml` config file, and present you with an interface to edit the `options:` value. The rest of your taxonomy.yml file will remain untouched, please use this as normal. 
+
 This plugin may change the YAML syntax of your taxonomy.yml file, but it is still outputting valid YAML - it's just the syntax the parser has decided to use for the content it is outputting. 
 
 ## Permission
