@@ -1,0 +1,30 @@
+# taxonomyitem.twig
+taxonomyeditor.action.showhideeditor: Click to show/hide term editor
+taxonomyeditor.action.delete: Click to delete term
+taxonomyeditor.fields.name: Name
+taxonomyeditor.fields.slug: Slug
+
+# taxonomyeditor.twig
+taxonomyeditor.actions.save: Save Taxonomies
+taxonomyeditor.title: Taxonomy editor
+taxonomyeditor.actions.add: Add taxonomy item
+taxonomyeditor.actions.restorebackups: Restore backups
+taxonomyeditor.backups.addnew: Add taxonomy term
+taxonomyeditor.backups.from: From
+taxonomyeditor.backups.date: Date
+taxonomyeditor.backups.restore: Restore
+taxonomyeditor.backups.nobackups: No backups yet, backups are created automatically when you save the taxonomies.
+
+# TaxonomyeditorExtension.php
+taxonomyeditor.taxonomyitem: Taxonomy editor
+taxonomyeditor.notallowed: The currently logged in user does not have the correct rights to use this route.
+taxonomyeditor.flash.error: Taxonomy couldn't be saved, we have restored it to it's last known good state.
+taxonomyeditor.flash.saved: The taxonomies have been saved
+taxonomyeditor.flash.backup: Backup restored
+
+# TaxonomyeditorExtension.php: JS translations
+taxonomyeditor.js.loading: Loading suggestions
+taxonomyeditor.js.newlink: New link to
+taxonomyeditor.actions.showhidechildren: Click to show/hide children
+taxonomyeditor.action.showhideeditor: Click to show/hide item editor
+taxonomyeditor.action.delete: Click to delete item

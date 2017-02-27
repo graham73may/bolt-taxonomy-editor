@@ -1,0 +1,28 @@
+# taxonomyitem.twig
+taxonomyeditor.action.showhideeditor: Klicka för att visa/dölja redigeraren
+taxonomyeditor.action.delete: Klicka för att ta bort taxonomin.
+taxonomyeditor.fields.name: Namn
+taxonomyeditor.fields.slug: Permalänk
+
+# taxonomyeditor.twig
+taxonomyeditor.actions.save: Spara Taxonomierna
+taxonomyeditor.title: Taxonomiredigerare
+taxonomyeditor.actions.add: Lägg till taxonomi
+taxonomyeditor.actions.restorebackups: Återställ backups
+taxonomyeditor.backups.addnew: Lägg till taxonomi
+taxonomyeditor.backups.from: Från
+taxonomyeditor.backups.date: Datum
+taxonomyeditor.backups.restore: Återställ
+taxonomyeditor.backups.nobackups: Inga backups än, backups skapas automatiskt när du sparar taxonomierna
+
+# TaxonomyeditorExtension.php
+taxonomyeditor.taxonomyitem: Taxonomiredigerare
+taxonomyeditor.notallowed: Den inloggade användaren har inte behörighet att se sidan.
+taxonomyeditor.flash.error: Taxonomierna kunde inte sparas så de har återställts.
+taxonomyeditor.flash.saved: Taxonomierna har sparats
+taxonomyeditor.flash.backup: Backup återställd
+
+# TaxonomyeditorExtension.php: JS translations
+taxonomyeditor.js.loading: Laddar förslag
+taxonomyeditor.js.newlink: Ny länk till
+taxonomyeditor.actions.showhidechildren: Klicka för att visa/dölja
