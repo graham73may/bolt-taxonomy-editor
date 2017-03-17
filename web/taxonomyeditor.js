@@ -100,7 +100,11 @@ $().ready(function () {
         var name = $(this).closest('.js-add-new-form').find('.js-add-new-name').val();
 
         if (slug.length && name.length) {
-            addToActiveTaxonomy(slug, name);
+            if (termExists(slug, name)) {
+                alert('A term already exists in this taxonomy with that slug. Please edit that term or change this terms slug');
+            } else {
+                addToActiveTaxonomy(slug, name);
+            }
         } else {
             alert('Please enter both slug taxonomy term name and slug');
         }
@@ -135,6 +139,12 @@ $().ready(function () {
         return arr;
     }
 
+    function termExists(slug) {
+        var field = $('.active ol.sortable').find('input[name="' + __("taxonomyeditor.fields.slug").toLowerCase() + '"]');
+
+        return (field.filter(function() { return $(this).val() === slug; }).length);
+    }
+    
     function addToActiveTaxonomy (slug, name) {
         var markup = '\
         <li class="mjs-nestedSortable-expanded" id="taxonomyterm-' + slug + '" data-slug="' + slug + '" data-name="' + name + '"> \
