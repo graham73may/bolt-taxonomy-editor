@@ -8,6 +8,7 @@ use Bolt\Controller\Zone;
 use Bolt\Asset\File\JavaScript;
 use Bolt\Asset\File\Stylesheet;
 use Bolt\Extension\SimpleExtension;
+use Bolt\Version as Version;
 use Silex\ControllerCollection;
 use Bolt\Translation\Translator as Trans;
 use Symfony\Component\HttpFoundation\Request;
@@ -49,10 +50,18 @@ class TaxonomyEditorExtension extends SimpleExtension
     protected function registerBackendRoutes(ControllerCollection $collection)
     {
 
-        $collection->match('/extend/taxonomyeditor', [
-            $this,
-            'taxonomyEditor'
-        ]);
+        //Since version 3.3 ther is a new mounting point for the extensions
+        if (Version::compare('3.3', '>')) {
+            $collection->match('/extend/taxonomyeditor', [
+                $this,
+                'taxonomyEditor'
+            ]);
+        } else {
+            $collection->match('/extensions/taxonomyeditor', [
+                $this,
+                'taxonomyEditor'
+            ]);
+        }
     }
 
     /**
@@ -64,7 +73,7 @@ class TaxonomyEditorExtension extends SimpleExtension
 
         $config = $this->getConfig();
 
-        $menu = new MenuEntry('extend/taxonomyeditor', 'taxonomyeditor');
+        $menu = new MenuEntry('taxonomyeditor', 'taxonomyeditor');
         $menu->setLabel(Trans::__('taxonomyeditor.taxonomyitem', ['DEFAULT' => 'Taxonomy editor']))
              ->setIcon('fa:tags')
              ->setPermission($config['permission']);
