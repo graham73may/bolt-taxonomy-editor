@@ -106,7 +106,7 @@ class TaxonomyEditorExtension extends SimpleExtension
         return [
             'fields'     => [],
             'backups'    => [
-                'enabled' => false
+                'enable' => false
             ],
             'permission' => 'files:config'
         ];
